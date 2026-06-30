@@ -1,3 +1,4 @@
+'use client'
 import React, { ReactNode, useState } from 'react';
 import { cn } from '@/lib/utils';
 
