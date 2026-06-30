@@ -28,6 +28,7 @@ export const mockOrders: Order[] = [
     virtualBankName: 'SafeBank',
     status: 'deposit_paid',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+    payments: [],
   },
   {
     id: '1039',
@@ -43,6 +44,7 @@ export const mockOrders: Order[] = [
     virtualBankName: 'SafeBank',
     status: 'completed',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
+    payments: [],
   },
 ];
 

@@ -1,3 +1,5 @@
+import { Payment } from './payment';
+
 export type OrderStatus = 
   | 'awaiting_payment' 
   | 'deposit_paid' 
@@ -25,4 +27,7 @@ export interface Order {
   dispatchNote?: string;
   dispatchUploadedAt?: string;
   createdAt: string;
+  payments: Payment[];
+  overpaymentAmount?: number;
+  creditNote?: string;
 }
