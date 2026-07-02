@@ -1,0 +1,72 @@
+Build the Buyers screen for SafeSwap at app/(dashboard)/buyers/page.tsx, 
+using Next.js App Router, TypeScript, Tailwind CSS, and our existing 
+OrdersContext.
+
+CRITICAL RULE: Use ONLY the existing component library at /components/ui 
+and /components/layout. Do not invent new styled elements.
+
+REFERENCE
+Match the attached Stitch screenshot's layout and structure using our 
+existing component styling.
+
+THIS SCREEN MUST BE FUNCTIONAL. Implement real client-side logic:
+
+1. DERIVE BUYERS FROM ORDERS (no separate buyers state needed)
+   - Use useMemo to group orders by buyerPhone (unique key)
+   - For each unique buyer, calculate:
+     - name, phone (from their orders)
+     - totalOrders: count of orders
+     - totalSpent: sum of amountPaid across all their orders
+     - outstandingBalance: sum of (totalPrice - amountPaid) across 
+       orders not yet completed/cancelled
+     - lastOrderDate: most recent order createdAt
+     - paymentHealth: derive using this logic:
+       - 'defaulted' if any order has status awaiting_payment AND 
+         createdAt is more than 5 days ago (use a simple date diff)
+       - 'partial' if outstandingBalance > 0 but not defaulted
+       - 'reliable' if outstandingBalance === 0 and totalOrders >= 1
+   - Add a paymentHealth config (similar pattern to statusConfig.ts) 
+     in /lib/constants/healthConfig.ts mapping health to label + color, 
+     do not hardcode colors inline
+
+2. SEARCH
+   - Controlled input, filters buyers by name OR phone (case-insensitive 
+     substring match), using useMemo combined with the derived list
+
+3. SORT DROPDOWN
+   - Options: Most Recent (lastOrderDate desc), Highest Spent 
+     (totalSpent desc), Outstanding Balance (outstandingBalance desc)
+   - Controlled via local state, applied to the filtered list before 
+     rendering
+
+4. FILTER PILLS
+   - All / Reliable Payers / Has Outstanding Balance
+   - Filters the already search+sorted list further
+   - Active pill highlighted, same pattern as Orders screen
+
+5. BUYERS TABLE
+   - Render filtered/sorted buyers as rows: Avatar (initials) + name + 
+     phone, totalOrders, totalSpent formatted as Naira, 
+     outstandingBalance formatted as Naira (gray if 0, amber if > 0), 
+     paymentHealth Badge, lastOrderDate as relative time, chevron icon
+   - Clicking a row opens the Buyer Profile (see below) — implement as 
+     a slide-over panel using the existing Modal component (full height 
+     variant) rather than a new route, to keep this fast to build
+   - If filtered list is empty: show "No buyers match your search"
+
+6. BUYER PROFILE PANEL (Modal-based slide-over)
+   - Triggered by row click, receives the selected buyer's phone as key
+   - Header: Avatar (large), name, phone, "Message on WhatsApp" button 
+     using the same wa.me deep link pattern as other screens
+   - 4 stat cards: Total Orders, Total Spent, Outstanding Balance, 
+     Payment Health badge
+   - Order History list: filter orders by buyerPhone === selected buyer, 
+     sorted newest first, each row showing item name, amount, 
+     <Badge status={order.status} />, relative date
+   - Each order row in this list is clickable, closes the modal and 
+     navigates to /orders/[id]
+
+No new OrdersContext functions are needed for this screen, it is a pure 
+derived/read view, same pattern as Production Queue. Verify reactivity: 
+simulating a payment on Order Detail should update that buyer's 
+totalSpent and outstandingBalance here without a refresh.

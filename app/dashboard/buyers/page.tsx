@@ -19,7 +19,7 @@ import { formatCurrency, formatRelativeTime } from '@/lib/utils';
 import { Order } from '@/lib/types/order';
 import { healthConfig, PaymentHealth } from '@/lib/constants/healthConfig';
 
-// ─── Derived buyer shape ────────────────────────────────────────────────────
+// ─── Derived buyer shape 
 interface DerivedBuyer {
   name: string;
   phone: string;
@@ -169,7 +169,7 @@ function BuyerPanel({ buyer, onClose, onOrderClick }: BuyerPanelProps) {
                         <span className="text-xs text-gray-500">{formatRelativeTime(order.createdAt)}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
+                    <div className="flex items-center gap-2 shrink-0">
                       <div className="text-right">
                         <p className="text-sm font-bold text-gray-900">{formatCurrency(order.totalPrice)}</p>
                       </div>
@@ -187,7 +187,7 @@ function BuyerPanel({ buyer, onClose, onOrderClick }: BuyerPanelProps) {
   );
 }
 
-// ─── Main Page ───────────────────────────────────────────────────────────────
+// ─── Main Page 
 export default function BuyersPage() {
   const router = useRouter();
   const { orders } = useOrders();
@@ -300,7 +300,7 @@ export default function BuyersPage() {
         {/* Summary stat cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="flex items-center gap-4 border-l-4 border-blue-500" padding="md">
-            <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
               <Users className="w-5 h-5 text-blue-600" />
             </div>
             <div>
@@ -309,7 +309,7 @@ export default function BuyersPage() {
             </div>
           </Card>
           <Card className="flex items-center gap-4 border-l-4 border-green-500" padding="md">
-            <div className="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
               <TrendingUp className="w-5 h-5 text-green-600" />
             </div>
             <div>
@@ -318,7 +318,7 @@ export default function BuyersPage() {
             </div>
           </Card>
           <Card className="flex items-center gap-4 border-l-4 border-amber-500" padding="md">
-            <div className="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
               <AlertCircle className="w-5 h-5 text-amber-600" />
             </div>
             <div>
@@ -421,7 +421,7 @@ export default function BuyersPage() {
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${health.bgClass} ${health.colorClass}`}>
                         {health.label}
                       </span>
-                      <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <ChevronRight className="w-4 h-4 text-gray-400 shrink-0" />
                     </div>
 
                     {/* Desktop layout */}
@@ -447,7 +447,7 @@ export default function BuyersPage() {
                         <span
                           className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full ${health.bgClass} ${health.colorClass}`}
                         >
-                          <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${health.dotClass}`} />
+                          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${health.dotClass}`} />
                           {health.label}
                         </span>
                       </div>

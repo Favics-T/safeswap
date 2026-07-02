@@ -1,10 +1,21 @@
+export interface NotificationPrefs {
+  emailOnPayment: boolean;
+  emailOnDispute: boolean;
+  smsOnUrgentDispute: boolean;
+  weeklyDigest: boolean;
+}
+
 export interface Vendor {
   id: string;
+  name: string;
   businessName: string;
-  ownerName: string;
   email: string;
   phone: string;
-  address: string;
-  isVerified: boolean;
-  joinedAt: string;
+  logoUrl?: string;
+  defaultDepositThresholdPct: number;
+  allowFullUpfrontPayment: boolean;
+  nombaSubaccountId: string;
+  webhookStatus: 'active' | 'inactive';
+  lastWebhookReceivedAt?: string;
+  notificationPrefs: NotificationPrefs;
 }

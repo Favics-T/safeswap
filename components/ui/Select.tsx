@@ -10,6 +10,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options: SelectOption[];
   error?: string;
+  placeholder?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register?: any;
 }
