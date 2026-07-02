@@ -5,13 +5,20 @@ import { Dispute } from './types/dispute';
 
 export const mockVendor: Vendor = {
   id: 'v-001',
-  businessName: 'Adaeze Creations',
   ownerName: 'Adaeze',
+  businessName: 'Adaeze Creations',
   email: 'adaeze@example.com',
   phone: '08012345678',
-  address: 'Lagos, Nigeria',
-  isVerified: true,
-  joinedAt: '2025-01-01T00:00:00Z',
+  defaultDepositThresholdPct: 50,
+  allowFullUpfrontPayment: true,
+  nombaSubaccountId: 'a13e4-8c4f-ff7fd18e463a',
+  webhookStatus: 'active',
+  notificationPrefs: {
+    emailOnPayment: true,
+    emailOnDispute: true,
+    smsOnUrgentDispute: false,
+    weeklyDigest: true,
+  },
 };
 
 export const mockOrders: Order[] = [

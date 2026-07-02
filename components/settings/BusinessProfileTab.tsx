@@ -9,7 +9,7 @@ import { NIGERIAN_PHONE_REGEX } from '@/lib/format';
 
 interface ProfileFormValues {
   businessName: string;
-  name: string;
+  ownerName: string;
   phone: string;
 }
 
@@ -26,7 +26,7 @@ export const BusinessProfileTab = () => {
   } = useForm<ProfileFormValues>({
     defaultValues: {
       businessName: vendor.businessName,
-      name: vendor.name,
+      ownerName: vendor.ownerName,
       phone: vendor.phone,
     },
   });
@@ -95,8 +95,8 @@ export const BusinessProfileTab = () => {
             label="Vendor Full Name"
             required
             placeholder="Adaeze Okonkwo"
-            error={errors.name?.message}
-            {...register('name', {
+            error={errors.ownerName?.message}
+            {...register('ownerName', {
               required: 'Your name is required',
               minLength: { value: 2, message: 'Must be at least 2 characters' },
             })}

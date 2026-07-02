@@ -5,7 +5,7 @@ import { Vendor, NotificationPrefs } from '@/lib/types/vendor';
 
 const mockVendor: Vendor = {
   id: 'vendor_1',
-  name: 'Adaeze Okonkwo',
+  ownerName: 'Adaeze Okonkwo',
   businessName: 'Adaeze Creations',
   email: 'adaeze@creations.ng',
   phone: '08123456789',

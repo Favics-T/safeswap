@@ -16,6 +16,8 @@ interface OrdersContextType {
   vendor: Vendor;
   disputes: Dispute[];
   activeDisputeCount: number;
+  /** @alias activeDisputeCount — kept for backward compatibility */
+  disputeCount: number;
   addOrder: (order: NewOrderPayload) => void;
   updateOrderStatus: (id: string, status: OrderStatus) => void;
   recordPayment: (id: string, amount: number) => void;
@@ -203,6 +205,7 @@ export function OrdersProvider({ children }: { children: ReactNode }) {
   return (
     <OrdersContext.Provider value={{
       orders, activity, vendor, disputes, activeDisputeCount,
+      disputeCount: activeDisputeCount,
       addOrder, updateOrderStatus, recordPayment, resolveOverpayment, addDispatchProof, confirmDelivery,
       raiseDispute, addDisputeMessage, resolveDispute,
     }}>

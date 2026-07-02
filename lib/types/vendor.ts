@@ -7,7 +7,7 @@ export interface NotificationPrefs {
 
 export interface Vendor {
   id: string;
-  name: string;
+  ownerName: string;
   businessName: string;
   email: string;
   phone: string;

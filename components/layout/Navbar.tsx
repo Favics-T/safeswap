@@ -4,7 +4,11 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Avatar } from '@/components/ui';
 
-export const Navbar = () => {
+interface NavbarProps {
+  activeRoute?: string;
+}
+
+export const Navbar = ({ activeRoute: _activeRoute }: NavbarProps = {}) => {
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-30">
       <div className="px-4 sm:px-6 lg:px-8">
